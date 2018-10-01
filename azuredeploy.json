@@ -73,5 +73,11 @@
         }
       }
     }
-  ]
+  ], 
+  "outputs": {
+    "resourceID": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.ApiManagement/service', variables('apiManagementServiceName'))]"
+    }
+  }
 }
