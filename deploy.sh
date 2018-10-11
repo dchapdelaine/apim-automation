@@ -1,8 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
 
 # BEGIN : Variables to define here
-rgName="apimautomation"
-apimName="dchapimautomation"
+rgName="apim"
+apimName="dchapim"
 vnetName="apimvnet"
 subnetName="apimsubnet"
 location="Canada East"
@@ -12,7 +12,7 @@ apimLocalGit="../apim-automation-gitsync"
 # az login (you can use a service principal)...
 
 # Precreating a vnet to better match the customer use case
-az group create --name $rgName --location $location
+az group create --name $rgName --location "$location"
 az network vnet create -g $rgName --subnet-name $subnetName -n $vnetName
 subnetId=$(az network vnet subnet show -g $rgName -n $subnetName --vnet-name $vnetName --query "id" | xargs)
 subId=$(az account show --query "id" | xargs)
