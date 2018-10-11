@@ -7,6 +7,7 @@ This example is destined to those who do not want to leverage the [Azure Powersh
 2. Curl
 3. [jq](https://stedolan.github.io/jq/download/)
 4. [Azure-CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+5. A local git repo with a valid configuration for APIM. You can get one from an existing APIM as explained [here](https://docs.microsoft.com/en-us/azure/api-management/api-management-configuration-repository-git)
 
 ## How it works
 Using Azure CLI, this script will create a Resource Group and a VNET. It will then deploy an APIM instance using an ARM template since APIM is not supported in Azure CLI. Once this is done, the script will use the token from Azure CLI to then make API calls to the Azure Resource Manager API with Curl.
