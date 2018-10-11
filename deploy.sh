@@ -33,15 +33,6 @@ baseAPIUrl="https://management.azure.com/subscriptions/$subId/resourceGroups/$rg
 apiVersion="api-version=2018-06-01-preview"
 
 
-#gitAccessResponse=$(curl \
-#  -X GET \
-#  -H "Authorization: Bearer $token" \
-#  -H "Content-Type: application/json" \
-#  $baseAPIUrl/tenant/access/git\?$apiVersion \
-#)
-#gitKey=$(echo -n $gitAccessResponse | jq -r ".primaryKey")
-
-
 # Get git access token
 expiry=$(date -d "today + 1 day" -I)
 gitTokenResponse=$(curl \
@@ -85,19 +76,4 @@ gitDeployResponse=$(curl \
   $baseAPIUrl/tenant/configuration/deploy\?$apiVersion \
 )
 
-# Wait for the publication to complete
-while true; do
-  gitSyncResponse=$(curl \
-    -X GET \
-    -H "Authorization: Bearer $token" \
-    -H "Content-Type: application/json" \
-    $baseAPIUrl/tenant/configuration/syncState\?$apiVersion \
-  )
-  isSynched=$(echo -n $gitSyncResponse | jq -r ".isSynced")
-
-  if [ $isSynced -eq "true"]
-    then break;
-
-  echo "Sleeping for 5"
-  sleep 5
-done
+echo "All done!"
